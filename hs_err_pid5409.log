@@ -1,0 +1,722 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 67108864 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2884), pid=5409, tid=5428
+#
+# JRE version: OpenJDK Runtime Environment (11.0.4+10) (build 11.0.4+10-b304.77)
+# Java VM: OpenJDK 64-Bit Server VM (11.0.4+10-b304.77, mixed mode, tiered, compressed oops, g1 gc, linux-amd64)
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/share/apport/apport %p %s %c %d %P %E" (or dumping to /home/b2c/Projects/flinkpluralsightcourse/core.5409)
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -javaagent:/home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/lib/idea_rt.jar=33109:/home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/bin -Dfile.encoding=UTF-8 com.pluralsight.flink.module2.FilterMovies
+
+Host: Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz, 2 cores, 1G, Ubuntu 18.04.4 LTS
+Time: Sat Aug  1 17:55:22 2020 IST elapsed time: 81 seconds (0d 0h 1m 21s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fdae4129800):  VMThread "VM Thread" [stack: 0x00007fdac14fc000,0x00007fdac15fc000] [id=5428]
+
+Stack: [0x00007fdac14fc000,0x00007fdac15fc000],  sp=0x00007fdac15fa010,  free space=1016k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xd9777a]  VMError::report_and_die(int, char const*, char const*, __va_list_tag*, Thread*, unsigned char*, void*, void*, char const*, int, unsigned long)+0x18a
+V  [libjvm.so+0xd98613]  VMError::report_and_die(Thread*, char const*, int, unsigned long, VMErrorType, char const*, __va_list_tag*)+0x43
+V  [libjvm.so+0x698dc8]  report_vm_out_of_memory(char const*, int, unsigned long, VMErrorType, char const*, ...)+0xe8
+V  [libjvm.so+0xb9e069]  os::pd_commit_memory_or_exit(char*, unsigned long, unsigned long, bool, char const*)+0xe9
+V  [libjvm.so+0xb956bd]  os::commit_memory_or_exit(char*, unsigned long, unsigned long, bool, char const*)+0x1d
+V  [libjvm.so+0x7a0591]  G1PageBasedVirtualSpace::commit_preferred_pages(unsigned long, unsigned long)+0x71
+V  [libjvm.so+0x7a06e5]  G1PageBasedVirtualSpace::commit_internal(unsigned long, unsigned long)+0x85
+V  [libjvm.so+0x7a08da]  G1PageBasedVirtualSpace::commit(unsigned long, unsigned long)+0x10a
+V  [libjvm.so+0x7a8196]  G1RegionsLargerThanCommitSizeMapper::commit_regions(unsigned int, unsigned long, WorkGang*)+0x46
+V  [libjvm.so+0x8108a8]  HeapRegionManager::commit_regions(unsigned int, unsigned long, WorkGang*)+0x88
+V  [libjvm.so+0x811404]  HeapRegionManager::make_regions_available(unsigned int, unsigned int, WorkGang*)+0x34
+V  [libjvm.so+0x811909]  HeapRegionManager::expand_by(unsigned int, WorkGang*)+0x79
+V  [libjvm.so+0x764260]  G1CollectedHeap::expand(unsigned long, WorkGang*, double*)+0xc0
+V  [libjvm.so+0x7680e7]  G1CollectedHeap::do_collection_pause_at_safepoint(double)+0xac7
+V  [libjvm.so+0xda1a62]  VM_G1CollectForAllocation::doit()+0x82
+V  [libjvm.so+0xda0a70]  VM_Operation::evaluate()+0xe0
+V  [libjvm.so+0xd9e587]  VMThread::evaluate_operation(VM_Operation*)+0xc7
+V  [libjvm.so+0xd9e995]  VMThread::loop()+0x255
+V  [libjvm.so+0xd9eead]  VMThread::run()+0x6d
+V  [libjvm.so+0xd364a6]  Thread::call_run()+0x146
+V  [libjvm.so+0xba3c18]  thread_native_entry(Thread*)+0xf8
+
+VM_Operation (0x00007fdaecbf3bc0): G1CollectForAllocation, mode: safepoint, requested by thread 0x00007fdae4014000
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007fdac4000f40, length=11, elements={
+0x00007fdae4014000, 0x00007fdae4131800, 0x00007fdae4136000, 0x00007fdae4148800,
+0x00007fdae414a800, 0x00007fdae414c800, 0x00007fdae414f000, 0x00007fdae41a5800,
+0x00007fdae442b800, 0x00007fdae442f000, 0x00007fdaa4001000
+}
+
+Java Threads: ( => current thread )
+  0x00007fdae4014000 JavaThread "main" [_thread_blocked, id=5416, stack(0x00007fdaecaf6000,0x00007fdaecbf7000)]
+  0x00007fdae4131800 JavaThread "Reference Handler" daemon [_thread_blocked, id=5431, stack(0x00007fdac13f9000,0x00007fdac14fa000)]
+  0x00007fdae4136000 JavaThread "Finalizer" daemon [_thread_blocked, id=5432, stack(0x00007fdac12f8000,0x00007fdac13f9000)]
+  0x00007fdae4148800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=5434, stack(0x00007fdac0f19000,0x00007fdac101a000)]
+  0x00007fdae414a800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=5436, stack(0x00007fdac0e18000,0x00007fdac0f19000)]
+  0x00007fdae414c800 JavaThread "C1 CompilerThread0" daemon [_thread_blocked, id=5437, stack(0x00007fdac0d17000,0x00007fdac0e18000)]
+  0x00007fdae414f000 JavaThread "Sweeper thread" daemon [_thread_blocked, id=5439, stack(0x00007fdac0c16000,0x00007fdac0d17000)]
+  0x00007fdae41a5800 JavaThread "Common-Cleaner" daemon [_thread_blocked, id=5444, stack(0x00007fdac0b15000,0x00007fdac0c16000)]
+  0x00007fdae442b800 JavaThread "Monitor Ctrl-Break" daemon [_thread_in_native, id=5445, stack(0x00007fdac05eb000,0x00007fdac06ec000)]
+  0x00007fdae442f000 JavaThread "Service Thread" daemon [_thread_blocked, id=5446, stack(0x00007fdac04ea000,0x00007fdac05eb000)]
+  0x00007fdaa4001000 JavaThread "Attach Listener" daemon [_thread_blocked, id=5449, stack(0x00007fda93eff000,0x00007fda94000000)]
+
+Other Threads:
+=>0x00007fdae4129800 VMThread "VM Thread" [stack: 0x00007fdac14fc000,0x00007fdac15fc000] [id=5428]
+  0x00007fdae4431000 WatcherThread [stack: 0x00007fdac03ea000,0x00007fdac04ea000] [id=5447]
+  0x00007fdae402a000 GCTaskThread "GC Thread#0" [stack: 0x00007fdae88ea000,0x00007fdae89ea000] [id=5418]
+  0x00007fdab8001000 GCTaskThread "GC Thread#1" [stack: 0x00007fdac02e8000,0x00007fdac03e8000] [id=5448]
+  0x00007fdae403a000 ConcurrentGCThread "G1 Main Marker" [stack: 0x00007fdae8301000,0x00007fdae8401000] [id=5419]
+  0x00007fdae403c000 ConcurrentGCThread "G1 Conc#0" [stack: 0x00007fdae81ff000,0x00007fdae82ff000] [id=5421]
+  0x00007fdae405f000 ConcurrentGCThread "G1 Refine#0" [stack: 0x00007fdac1f00000,0x00007fdac2000000] [id=5423]
+  0x00007fdae4061000 ConcurrentGCThread "G1 Young RemSet Sampling" [stack: 0x00007fdac1dfe000,0x00007fdac1efe000] [id=5425]
+
+Threads with active compile tasks:
+C2 CompilerThread01628       4       java.util.HashMap::putVal (300 bytes)
+C1 CompilerThread01688       2       com.typesafe.config.impl.Tokenizer$TokenIterator::nextCharAfterWhitespace (29 bytes)
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007fdae40102f0] Threads_lock - owner thread: 0x00007fdae4129800
+[0x00007fdae4010a40] Heap_lock - owner thread: 0x00007fdae4014000
+
+Heap address: 0x00000000e1200000, size: 494 MB, Compressed Oops mode: 32-bit
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x0000000100000000
+
+Heap:
+ garbage-first heap   total 131072K, used 11200K [0x00000000e1200000, 0x0000000100000000)
+  region size 1024K, 1 young (1024K), 1 survivors (1024K)
+ Metaspace       used 25772K, capacity 26292K, committed 26624K, reserved 1073152K
+  class space    used 3083K, capacity 3290K, committed 3328K, reserved 1048576K
+Heap Regions: E=young(eden), S=young(survivor), O=old, HS=humongous(starts), HC=humongous(continues), CS=collection set, F=free, A=archive, TAMS=top-at-mark-start (previous, next)
+|   0|0x00000000e1200000, 0x00000000e1300000, 0x00000000e1300000|100%|HS|  |TAMS 0x00000000e1300000, 0x00000000e1200000| Complete 
+|   1|0x00000000e1300000, 0x00000000e1400000, 0x00000000e1400000|100%|HS|  |TAMS 0x00000000e1400000, 0x00000000e1300000| Complete 
+|   2|0x00000000e1400000, 0x00000000e1500000, 0x00000000e1500000|100%| O|  |TAMS 0x00000000e1500000, 0x00000000e1400000| Untracked 
+|   3|0x00000000e1500000, 0x00000000e1600000, 0x00000000e1600000|100%| O|  |TAMS 0x00000000e1600000, 0x00000000e1500000| Untracked 
+|   4|0x00000000e1600000, 0x00000000e1700000, 0x00000000e1700000|100%| O|  |TAMS 0x00000000e1700000, 0x00000000e1600000| Untracked 
+|   5|0x00000000e1700000, 0x00000000e1800000, 0x00000000e1800000|100%| O|  |TAMS 0x00000000e1800000, 0x00000000e1700000| Untracked 
+|   6|0x00000000e1800000, 0x00000000e1900000, 0x00000000e1900000|100%| O|  |TAMS 0x00000000e1900000, 0x00000000e1800000| Untracked 
+|   7|0x00000000e1900000, 0x00000000e1a00000, 0x00000000e1a00000|100%| O|  |TAMS 0x00000000e1a00000, 0x00000000e1900000| Untracked 
+|   8|0x00000000e1a00000, 0x00000000e1b00000, 0x00000000e1b00000|100%| O|  |TAMS 0x00000000e1b00000, 0x00000000e1a00000| Untracked 
+|   9|0x00000000e1b00000, 0x00000000e1c00000, 0x00000000e1c00000|100%| O|  |TAMS 0x00000000e1b12e00, 0x00000000e1b00000| Untracked 
+|  10|0x00000000e1c00000, 0x00000000e1c5a800, 0x00000000e1d00000| 35%| O|  |TAMS 0x00000000e1c00000, 0x00000000e1c00000| Untracked 
+|  11|0x00000000e1d00000, 0x00000000e1d00000, 0x00000000e1e00000|  0%| F|  |TAMS 0x00000000e1d00000, 0x00000000e1d00000| Untracked 
+|  12|0x00000000e1e00000, 0x00000000e1e00000, 0x00000000e1f00000|  0%| F|  |TAMS 0x00000000e1e00000, 0x00000000e1e00000| Untracked 
+|  13|0x00000000e1f00000, 0x00000000e1f00000, 0x00000000e2000000|  0%| F|  |TAMS 0x00000000e1f00000, 0x00000000e1f00000| Untracked 
+|  14|0x00000000e2000000, 0x00000000e2000000, 0x00000000e2100000|  0%| F|  |TAMS 0x00000000e2000000, 0x00000000e2000000| Untracked 
+|  15|0x00000000e2100000, 0x00000000e2100000, 0x00000000e2200000|  0%| F|  |TAMS 0x00000000e2100000, 0x00000000e2100000| Untracked 
+|  16|0x00000000e2200000, 0x00000000e2200000, 0x00000000e2300000|  0%| F|  |TAMS 0x00000000e2200000, 0x00000000e2200000| Untracked 
+|  17|0x00000000e2300000, 0x00000000e2300000, 0x00000000e2400000|  0%| F|  |TAMS 0x00000000e2300000, 0x00000000e2300000| Untracked 
+|  18|0x00000000e2400000, 0x00000000e2400000, 0x00000000e2500000|  0%| F|  |TAMS 0x00000000e2400000, 0x00000000e2400000| Untracked 
+|  19|0x00000000e2500000, 0x00000000e2500000, 0x00000000e2600000|  0%| F|  |TAMS 0x00000000e2500000, 0x00000000e2500000| Untracked 
+|  20|0x00000000e2600000, 0x00000000e2600000, 0x00000000e2700000|  0%| F|  |TAMS 0x00000000e2600000, 0x00000000e2600000| Untracked 
+|  21|0x00000000e2700000, 0x00000000e2700000, 0x00000000e2800000|  0%| F|  |TAMS 0x00000000e2700000, 0x00000000e2700000| Untracked 
+|  22|0x00000000e2800000, 0x00000000e2800000, 0x00000000e2900000|  0%| F|  |TAMS 0x00000000e2800000, 0x00000000e2800000| Untracked 
+|  23|0x00000000e2900000, 0x00000000e2900000, 0x00000000e2a00000|  0%| F|  |TAMS 0x00000000e2900000, 0x00000000e2900000| Untracked 
+|  24|0x00000000e2a00000, 0x00000000e2a00000, 0x00000000e2b00000|  0%| F|  |TAMS 0x00000000e2a00000, 0x00000000e2a00000| Untracked 
+|  25|0x00000000e2b00000, 0x00000000e2b00000, 0x00000000e2c00000|  0%| F|  |TAMS 0x00000000e2b00000, 0x00000000e2b00000| Untracked 
+|  26|0x00000000e2c00000, 0x00000000e2c00000, 0x00000000e2d00000|  0%| F|  |TAMS 0x00000000e2c00000, 0x00000000e2c00000| Untracked 
+|  27|0x00000000e2d00000, 0x00000000e2d00000, 0x00000000e2e00000|  0%| F|  |TAMS 0x00000000e2d00000, 0x00000000e2d00000| Untracked 
+|  28|0x00000000e2e00000, 0x00000000e2e00000, 0x00000000e2f00000|  0%| F|  |TAMS 0x00000000e2e00000, 0x00000000e2e00000| Untracked 
+|  29|0x00000000e2f00000, 0x00000000e2f00000, 0x00000000e3000000|  0%| F|  |TAMS 0x00000000e2f00000, 0x00000000e2f00000| Untracked 
+|  30|0x00000000e3000000, 0x00000000e3000000, 0x00000000e3100000|  0%| F|  |TAMS 0x00000000e3000000, 0x00000000e3000000| Untracked 
+|  31|0x00000000e3100000, 0x00000000e3100000, 0x00000000e3200000|  0%| F|  |TAMS 0x00000000e3100000, 0x00000000e3100000| Untracked 
+|  32|0x00000000e3200000, 0x00000000e3200000, 0x00000000e3300000|  0%| F|  |TAMS 0x00000000e3200000, 0x00000000e3200000| Untracked 
+|  33|0x00000000e3300000, 0x00000000e3300000, 0x00000000e3400000|  0%| F|  |TAMS 0x00000000e3300000, 0x00000000e3300000| Untracked 
+|  34|0x00000000e3400000, 0x00000000e3400000, 0x00000000e3500000|  0%| F|  |TAMS 0x00000000e3400000, 0x00000000e3400000| Untracked 
+|  35|0x00000000e3500000, 0x00000000e3500000, 0x00000000e3600000|  0%| F|  |TAMS 0x00000000e3500000, 0x00000000e3500000| Untracked 
+|  36|0x00000000e3600000, 0x00000000e3600000, 0x00000000e3700000|  0%| F|  |TAMS 0x00000000e3600000, 0x00000000e3600000| Untracked 
+|  37|0x00000000e3700000, 0x00000000e3700000, 0x00000000e3800000|  0%| F|  |TAMS 0x00000000e3700000, 0x00000000e3700000| Untracked 
+|  38|0x00000000e3800000, 0x00000000e3800000, 0x00000000e3900000|  0%| F|  |TAMS 0x00000000e3800000, 0x00000000e3800000| Untracked 
+|  39|0x00000000e3900000, 0x00000000e3900000, 0x00000000e3a00000|  0%| F|  |TAMS 0x00000000e3900000, 0x00000000e3900000| Untracked 
+|  40|0x00000000e3a00000, 0x00000000e3a00000, 0x00000000e3b00000|  0%| F|  |TAMS 0x00000000e3a00000, 0x00000000e3a00000| Untracked 
+|  41|0x00000000e3b00000, 0x00000000e3b00000, 0x00000000e3c00000|  0%| F|  |TAMS 0x00000000e3b00000, 0x00000000e3b00000| Untracked 
+|  42|0x00000000e3c00000, 0x00000000e3c00000, 0x00000000e3d00000|  0%| F|  |TAMS 0x00000000e3c00000, 0x00000000e3c00000| Untracked 
+|  43|0x00000000e3d00000, 0x00000000e3d00000, 0x00000000e3e00000|  0%| F|  |TAMS 0x00000000e3d00000, 0x00000000e3d00000| Untracked 
+|  44|0x00000000e3e00000, 0x00000000e3e00000, 0x00000000e3f00000|  0%| F|  |TAMS 0x00000000e3e00000, 0x00000000e3e00000| Untracked 
+|  45|0x00000000e3f00000, 0x00000000e3f00000, 0x00000000e4000000|  0%| F|  |TAMS 0x00000000e3f00000, 0x00000000e3f00000| Untracked 
+|  46|0x00000000e4000000, 0x00000000e4000000, 0x00000000e4100000|  0%| F|  |TAMS 0x00000000e4000000, 0x00000000e4000000| Untracked 
+|  47|0x00000000e4100000, 0x00000000e4100000, 0x00000000e4200000|  0%| F|  |TAMS 0x00000000e4100000, 0x00000000e4100000| Untracked 
+|  48|0x00000000e4200000, 0x00000000e4200000, 0x00000000e4300000|  0%| F|  |TAMS 0x00000000e4200000, 0x00000000e4200000| Untracked 
+|  49|0x00000000e4300000, 0x00000000e4300000, 0x00000000e4400000|  0%| F|  |TAMS 0x00000000e4300000, 0x00000000e4300000| Untracked 
+|  50|0x00000000e4400000, 0x00000000e4400000, 0x00000000e4500000|  0%| F|  |TAMS 0x00000000e4400000, 0x00000000e4400000| Untracked 
+|  51|0x00000000e4500000, 0x00000000e4500000, 0x00000000e4600000|  0%| F|  |TAMS 0x00000000e4500000, 0x00000000e4500000| Untracked 
+|  52|0x00000000e4600000, 0x00000000e4600000, 0x00000000e4700000|  0%| F|  |TAMS 0x00000000e4600000, 0x00000000e4600000| Untracked 
+|  53|0x00000000e4700000, 0x00000000e4700000, 0x00000000e4800000|  0%| F|  |TAMS 0x00000000e4700000, 0x00000000e4700000| Untracked 
+|  54|0x00000000e4800000, 0x00000000e4800000, 0x00000000e4900000|  0%| F|  |TAMS 0x00000000e4800000, 0x00000000e4800000| Untracked 
+|  55|0x00000000e4900000, 0x00000000e4900000, 0x00000000e4a00000|  0%| F|  |TAMS 0x00000000e4900000, 0x00000000e4900000| Untracked 
+|  56|0x00000000e4a00000, 0x00000000e4a00000, 0x00000000e4b00000|  0%| F|  |TAMS 0x00000000e4a00000, 0x00000000e4a00000| Untracked 
+|  57|0x00000000e4b00000, 0x00000000e4b00000, 0x00000000e4c00000|  0%| F|  |TAMS 0x00000000e4b00000, 0x00000000e4b00000| Untracked 
+|  58|0x00000000e4c00000, 0x00000000e4c00000, 0x00000000e4d00000|  0%| F|  |TAMS 0x00000000e4c00000, 0x00000000e4c00000| Untracked 
+|  59|0x00000000e4d00000, 0x00000000e4d00000, 0x00000000e4e00000|  0%| F|  |TAMS 0x00000000e4d00000, 0x00000000e4d00000| Untracked 
+|  60|0x00000000e4e00000, 0x00000000e4e00000, 0x00000000e4f00000|  0%| F|  |TAMS 0x00000000e4e00000, 0x00000000e4e00000| Untracked 
+|  61|0x00000000e4f00000, 0x00000000e4f00000, 0x00000000e5000000|  0%| F|  |TAMS 0x00000000e4f00000, 0x00000000e4f00000| Untracked 
+|  62|0x00000000e5000000, 0x00000000e50959c0, 0x00000000e5100000| 58%| S|CS|TAMS 0x00000000e5000000, 0x00000000e5000000| Complete 
+|  63|0x00000000e5100000, 0x00000000e5100000, 0x00000000e5200000|  0%| F|  |TAMS 0x00000000e5100000, 0x00000000e5100000| Untracked 
+
+Card table byte_map: [0x00007fdae84f8000,0x00007fdae85ef000] _byte_map_base: 0x00007fdae7def000
+
+Marking Bits (Prev, Next): (CMBitMap*) 0x00007fdae4037790, (CMBitMap*) 0x00007fdae4037758
+ Prev Bits: [0x00007fdad01e0000, 0x00007fdad0998000)
+ Next Bits: [0x00007fdad0998000, 0x00007fdad1150000)
+
+Polling page: 0x00007fdaecc0b000
+
+Metaspace:
+
+Usage:
+  Non-class:     22.46 MB capacity,    22.16 MB ( 99%) used,   261.41 KB (  1%) free+waste,    52.38 KB ( <1%) overhead. 
+      Class:      3.21 MB capacity,     3.01 MB ( 94%) used,   182.09 KB (  6%) free+waste,    24.00 KB ( <1%) overhead. 
+       Both:     25.68 MB capacity,    25.17 MB ( 98%) used,   443.50 KB (  2%) free+waste,    76.38 KB ( <1%) overhead. 
+
+Virtual space:
+  Non-class space:       24.00 MB reserved,      22.75 MB ( 95%) committed 
+      Class space:        1.00 GB reserved,       3.25 MB ( <1%) committed 
+             Both:        1.02 GB reserved,      26.00 MB (  2%) committed 
+
+Chunk freelists:
+   Non-Class:  154.00 KB
+       Class:  6.00 KB
+        Both:  160.00 KB
+
+CodeHeap 'non-profiled nmethods': size=120036Kb used=599Kb max_used=599Kb free=119436Kb
+ bounds [0x00007fdad8c17000, 0x00007fdad8e87000, 0x00007fdae0150000]
+CodeHeap 'profiled nmethods': size=120032Kb used=2952Kb max_used=2952Kb free=117080Kb
+ bounds [0x00007fdad16df000, 0x00007fdad19cf000, 0x00007fdad8c17000]
+CodeHeap 'non-nmethods': size=5692Kb used=1139Kb max_used=1170Kb free=4552Kb
+ bounds [0x00007fdad1150000, 0x00007fdad13c0000, 0x00007fdad16df000]
+ total_blobs=2465 nmethods=1625 adapters=404
+ compilation: enabled
+              stopped_count=0, restarted_count=0
+ full_count=0
+
+Compilation events (10 events):
+Event: 77.734 Thread 0x00007fdae414c800 nmethod 1645 0x00007fdad19bed90 code [0x00007fdad19bef80, 0x00007fdad19bf4b8]
+Event: 77.752 Thread 0x00007fdae414c800 1647       3       com.typesafe.config.impl.Tokens::isUnquotedText (5 bytes)
+Event: 77.789 Thread 0x00007fdae414c800 nmethod 1647 0x00007fdad19bf810 code [0x00007fdad19bf9c0, 0x00007fdad19bfbf0]
+Event: 77.789 Thread 0x00007fdae414c800 1653       3       com.typesafe.config.impl.Tokenizer$TokenIterator::isWhitespaceNotNewline (19 bytes)
+Event: 77.789 Thread 0x00007fdae414c800 nmethod 1653 0x00007fdad19bfc90 code [0x00007fdad19bfe60, 0x00007fdad19c0068]
+Event: 77.813 Thread 0x00007fdae414c800 1649       3       com.typesafe.config.impl.Tokenizer$TokenIterator::startOfComment (52 bytes)
+Event: 77.853 Thread 0x00007fdae414c800 nmethod 1649 0x00007fdad19c0110 code [0x00007fdad19c0340, 0x00007fdad19c0978]
+Event: 77.857 Thread 0x00007fdae414c800 1658       3       com.typesafe.config.impl.Tokens::isIgnoredWhitespace (5 bytes)
+Event: 78.486 Thread 0x00007fdae414c800 nmethod 1658 0x00007fdad19c0b90 code [0x00007fdad19c0d40, 0x00007fdad19c0f70]
+Event: 78.722 Thread 0x00007fdae414c800 1688       2       com.typesafe.config.impl.Tokenizer$TokenIterator::nextCharAfterWhitespace (29 bytes)
+
+GC Heap History (10 events):
+Event: 2.374 GC heap after
+{Heap after GC invocations=5 (full 0):
+ garbage-first heap   total 65536K, used 8207K [0x00000000e1200000, 0x0000000100000000)
+  region size 1024K, 2 young (2048K), 2 survivors (2048K)
+ Metaspace       used 12835K, capacity 13018K, committed 13184K, reserved 1060864K
+  class space    used 1327K, capacity 1395K, committed 1408K, reserved 1048576K
+}
+Event: 3.132 GC heap before
+{Heap before GC invocations=5 (full 0):
+ garbage-first heap   total 65536K, used 19471K [0x00000000e1200000, 0x0000000100000000)
+  region size 1024K, 13 young (13312K), 2 survivors (2048K)
+ Metaspace       used 17251K, capacity 17669K, committed 17920K, reserved 1064960K
+  class space    used 1865K, capacity 1993K, committed 2048K, reserved 1048576K
+}
+Event: 3.160 GC heap after
+{Heap after GC invocations=6 (full 0):
+ garbage-first heap   total 65536K, used 9292K [0x00000000e1200000, 0x0000000100000000)
+  region size 1024K, 2 young (2048K), 2 survivors (2048K)
+ Metaspace       used 17251K, capacity 17669K, committed 17920K, reserved 1064960K
+  class space    used 1865K, capacity 1993K, committed 2048K, reserved 1048576K
+}
+Event: 4.573 GC heap before
+{Heap before GC invocations=6 (full 0):
+ garbage-first heap   total 65536K, used 24652K [0x00000000e1200000, 0x0000000100000000)
+  region size 1024K, 17 young (17408K), 2 survivors (2048K)
+ Metaspace       used 20635K, capacity 21055K, committed 21248K, reserved 1069056K
+  class space    used 2303K, capacity 2469K, committed 2560K, reserved 1048576K
+}
+Event: 4.607 GC heap after
+{Heap after GC invocations=7 (full 0):
+ garbage-first heap   total 65536K, used 9893K [0x00000000e1200000, 0x0000000100000000)
+  region size 1024K, 2 young (2048K), 2 survivors (2048K)
+ Metaspace       used 20635K, capacity 21055K, committed 21248K, reserved 1069056K
+  class space    used 2303K, capacity 2469K, committed 2560K, reserved 1048576K
+}
+Event: 4.762 GC heap before
+{Heap before GC invocations=7 (full 0):
+ garbage-first heap   total 65536K, used 9893K [0x00000000e1200000, 0x0000000100000000)
+  region size 1024K, 3 young (3072K), 2 survivors (2048K)
+ Metaspace       used 20676K, capacity 21055K, committed 21248K, reserved 1069056K
+  class space    used 2304K, capacity 2469K, committed 2560K, reserved 1048576K
+}
+Event: 4.878 GC heap after
+{Heap after GC invocations=8 (full 0):
+ garbage-first heap   total 65536K, used 10143K [0x00000000e1200000, 0x0000000100000000)
+  region size 1024K, 1 young (1024K), 1 survivors (1024K)
+ Metaspace       used 20676K, capacity 21055K, committed 21248K, reserved 1069056K
+  class space    used 2304K, capacity 2469K, committed 2560K, reserved 1048576K
+}
+Event: 61.041 GC heap before
+{Heap before GC invocations=9 (full 0):
+ garbage-first heap   total 65536K, used 29599K [0x00000000e1200000, 0x0000000100000000)
+  region size 1024K, 20 young (20480K), 1 survivors (1024K)
+ Metaspace       used 25660K, capacity 26193K, committed 26624K, reserved 1073152K
+  class space    used 3074K, capacity 3257K, committed 3328K, reserved 1048576K
+}
+Event: 62.460 GC heap after
+{Heap after GC invocations=10 (full 0):
+ garbage-first heap   total 65536K, used 10654K [0x00000000e1200000, 0x0000000100000000)
+  region size 1024K, 2 young (2048K), 2 survivors (2048K)
+ Metaspace       used 25660K, capacity 26193K, committed 26624K, reserved 1073152K
+  class space    used 3074K, capacity 3257K, committed 3328K, reserved 1048576K
+}
+Event: 78.748 GC heap before
+{Heap before GC invocations=10 (full 0):
+ garbage-first heap   total 65536K, used 11678K [0x00000000e1200000, 0x0000000100000000)
+  region size 1024K, 3 young (3072K), 2 survivors (2048K)
+ Metaspace       used 25772K, capacity 26292K, committed 26624K, reserved 1073152K
+  class space    used 3083K, capacity 3290K, committed 3328K, reserved 1048576K
+}
+
+Deoptimization events (10 events):
+Event: 63.772 Thread 0x00007fdae4014000 DEOPT PACKING pc=0x00007fdad8c6bb54 sp=0x00007fdaecbf3e40
+Event: 63.772 Thread 0x00007fdae4014000 DEOPT UNPACKING pc=0x00007fdad11786a5 sp=0x00007fdaecbf3df0 mode 2
+Event: 72.706 Thread 0x00007fdae4014000 Uncommon trap: trap_request=0xffffff4d fr.pc=0x00007fdad8c3cf20 relative=0x0000000000000560
+Event: 72.706 Thread 0x00007fdae4014000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fdad8c3cf20 method=java.lang.AbstractStringBuilder.append(Ljava/lang/String;)Ljava/lang/AbstractStringBuilder; @ 1 c2
+Event: 72.736 Thread 0x00007fdae4014000 DEOPT PACKING pc=0x00007fdad8c3cf20 sp=0x00007fdaecbf2140
+Event: 72.749 Thread 0x00007fdae4014000 DEOPT UNPACKING pc=0x00007fdad11786a5 sp=0x00007fdaecbf20d0 mode 2
+Event: 72.806 Thread 0x00007fdae4014000 Uncommon trap: trap_request=0xffffff4d fr.pc=0x00007fdad8c3dc34 relative=0x0000000000000574
+Event: 72.939 Thread 0x00007fdae4014000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fdad8c3dc34 method=java.lang.AbstractStringBuilder.append(Ljava/lang/String;)Ljava/lang/AbstractStringBuilder; @ 1 c2
+Event: 73.123 Thread 0x00007fdae4014000 DEOPT PACKING pc=0x00007fdad8c3dc34 sp=0x00007fdaecbf20e0
+Event: 73.128 Thread 0x00007fdae4014000 DEOPT UNPACKING pc=0x00007fdad11786a5 sp=0x00007fdaecbf20c8 mode 2
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (10 events):
+Event: 3.633 Thread 0x00007fdae4014000 Implicit null exception at 0x00007fdad8c7f9f5 to 0x00007fdad8c7fbaa
+Event: 5.939 Thread 0x00007fdae4014000 Exception <a 'java/lang/NoSuchMethodError'{0x00000000e5195cc8}: <clinit>> (0x00000000e5195cc8) thrown at [/opt/buildAgent/work/5ff2f6c26000d570/src/hotspot/share/prims/jni.cpp, line 1364]
+Event: 6.403 Thread 0x00007fdae4014000 Exception <a 'java/lang/NoSuchMethodError'{0x00000000e51aebe8}: <clinit>> (0x00000000e51aebe8) thrown at [/opt/buildAgent/work/5ff2f6c26000d570/src/hotspot/share/prims/jni.cpp, line 1364]
+Event: 6.569 Thread 0x00007fdae4014000 Exception <a 'java/lang/NoSuchMethodError'{0x00000000e51afbc0}: <clinit>> (0x00000000e51afbc0) thrown at [/opt/buildAgent/work/5ff2f6c26000d570/src/hotspot/share/prims/jni.cpp, line 1364]
+Event: 6.570 Thread 0x00007fdae4014000 Exception <a 'java/lang/NoSuchMethodError'{0x00000000e51b42b8}: <clinit>> (0x00000000e51b42b8) thrown at [/opt/buildAgent/work/5ff2f6c26000d570/src/hotspot/share/prims/jni.cpp, line 1364]
+Event: 6.716 Thread 0x00007fdae4014000 Exception <a 'java/lang/NoSuchMethodError'{0x00000000e51e95b8}: <clinit>> (0x00000000e51e95b8) thrown at [/opt/buildAgent/work/5ff2f6c26000d570/src/hotspot/share/prims/jni.cpp, line 1364]
+Event: 8.408 Thread 0x00007fdae4014000 Exception <a 'java/lang/NoSuchMethodError'{0x00000000e4c5c570}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeInterface(java.lang.Object, java.lang.Object, int)'> (0x00000000e4c5c570) thrown at [/opt/buildAgent/work/5ff2f6c26000d570/s
+Event: 11.303 Thread 0x00007fdae4014000 Exception <a 'java/lang/NoSuchMethodError'{0x00000000e47aa338}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeSpecialIFC(java.lang.Object, java.lang.Object, int)'> (0x00000000e47aa338) thrown at [/opt/buildAgent/work/5ff2f6c26000d570/src/hotspot/s
+Event: 72.621 Thread 0x00007fdae4014000 Implicit null exception at 0x00007fdad8c3c9f4 to 0x00007fdad8c3cf0a
+Event: 72.792 Thread 0x00007fdae4014000 Implicit null exception at 0x00007fdad8c3d6f4 to 0x00007fdad8c3dc1e
+
+Events (10 events):
+Event: 70.278 loading class sun/net/www/MimeTable$1 done
+Event: 70.310 loading class sun/net/www/MimeTable$DefaultInstanceHolder
+Event: 70.360 loading class sun/net/www/MimeTable$DefaultInstanceHolder done
+Event: 70.361 loading class sun/net/www/MimeTable$DefaultInstanceHolder$1
+Event: 70.361 loading class sun/net/www/MimeTable$DefaultInstanceHolder$1 done
+Event: 70.413 loading class jdk/internal/module/Checks
+Event: 70.453 loading class jdk/internal/module/Checks done
+Event: 71.895 loading class sun/net/www/MimeEntry
+Event: 72.405 loading class sun/net/www/MimeEntry done
+Event: 78.607 Executing VM operation: G1CollectForAllocation
+
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 08:01 138664                             /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/bin/java
+00601000-00602000 r--p 00001000 08:01 138664                             /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/bin/java
+00602000-00603000 rw-p 00002000 08:01 138664                             /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/bin/java
+00dce000-00def000 rw-p 00000000 00:00 0                                  [heap]
+e1200000-e5200000 rw-p 00000000 00:00 0 
+e9200000-100000000 ---p 00000000 00:00 0 
+100000000-100340000 rw-p 00000000 00:00 0 
+100340000-140000000 ---p 00000000 00:00 0 
+7fda9266f000-7fda92ab3000 rw-p 00000000 00:00 0 
+7fda92ab3000-7fda92bf3000 ---p 00000000 00:00 0 
+7fda92bf3000-7fda92df3000 rw-p 00000000 00:00 0 
+7fda92df3000-7fda92ff3000 rw-p 00000000 00:00 0 
+7fda92ff3000-7fda92ff7000 ---p 00000000 00:00 0 
+7fda92ff7000-7fda932f4000 rw-p 00000000 00:00 0 
+7fda932f4000-7fda934f4000 rw-p 00000000 00:00 0 
+7fda934f4000-7fda936f4000 rw-p 00000000 00:00 0 
+7fda936f4000-7fda938f4000 rw-p 00000000 00:00 0 
+7fda938f4000-7fda938f9000 r-xp 00000000 08:01 138619                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libmanagement_ext.so
+7fda938f9000-7fda93af8000 ---p 00005000 08:01 138619                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libmanagement_ext.so
+7fda93af8000-7fda93af9000 r--p 00004000 08:01 138619                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libmanagement_ext.so
+7fda93af9000-7fda93afa000 rw-p 00005000 08:01 138619                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libmanagement_ext.so
+7fda93afa000-7fda93afe000 r-xp 00000000 08:01 138617                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libmanagement.so
+7fda93afe000-7fda93cfd000 ---p 00004000 08:01 138617                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libmanagement.so
+7fda93cfd000-7fda93cfe000 r--p 00003000 08:01 138617                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libmanagement.so
+7fda93cfe000-7fda93cff000 rw-p 00004000 08:01 138617                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libmanagement.so
+7fda93cff000-7fda93eff000 rw-p 00000000 00:00 0 
+7fda93eff000-7fda93f03000 ---p 00000000 00:00 0 
+7fda93f03000-7fda94000000 rw-p 00000000 00:00 0 
+7fda94000000-7fda94021000 rw-p 00000000 00:00 0 
+7fda94021000-7fda98000000 ---p 00000000 00:00 0 
+7fda98000000-7fda98021000 rw-p 00000000 00:00 0 
+7fda98021000-7fda9c000000 ---p 00000000 00:00 0 
+7fda9c000000-7fda9c4f5000 rw-p 00000000 00:00 0 
+7fda9c4f5000-7fdaa0000000 ---p 00000000 00:00 0 
+7fdaa0000000-7fdaa0055000 rw-p 00000000 00:00 0 
+7fdaa0055000-7fdaa4000000 ---p 00000000 00:00 0 
+7fdaa4000000-7fdaa4021000 rw-p 00000000 00:00 0 
+7fdaa4021000-7fdaa8000000 ---p 00000000 00:00 0 
+7fdaa8000000-7fdaa9036000 rw-p 00000000 00:00 0 
+7fdaa9036000-7fdaac000000 ---p 00000000 00:00 0 
+7fdaac000000-7fdaac021000 rw-p 00000000 00:00 0 
+7fdaac021000-7fdab0000000 ---p 00000000 00:00 0 
+7fdab0000000-7fdab0021000 rw-p 00000000 00:00 0 
+7fdab0021000-7fdab4000000 ---p 00000000 00:00 0 
+7fdab4000000-7fdab4021000 rw-p 00000000 00:00 0 
+7fdab4021000-7fdab8000000 ---p 00000000 00:00 0 
+7fdab8000000-7fdab8076000 rw-p 00000000 00:00 0 
+7fdab8076000-7fdabc000000 ---p 00000000 00:00 0 
+7fdabc000000-7fdabc021000 rw-p 00000000 00:00 0 
+7fdabc021000-7fdac0000000 ---p 00000000 00:00 0 
+7fdac00e3000-7fdac00e5000 r-xp 00000000 08:01 138591                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libextnet.so
+7fdac00e5000-7fdac02e4000 ---p 00002000 08:01 138591                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libextnet.so
+7fdac02e4000-7fdac02e5000 r--p 00001000 08:01 138591                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libextnet.so
+7fdac02e5000-7fdac02e6000 rw-p 00002000 08:01 138591                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libextnet.so
+7fdac02e6000-7fdac02e7000 ---p 00000000 00:00 0 
+7fdac02e7000-7fdac03e8000 rw-p 00000000 00:00 0 
+7fdac03e8000-7fdac03e9000 ---p 00000000 00:00 0 
+7fdac03e9000-7fdac04ea000 rw-p 00000000 00:00 0 
+7fdac04ea000-7fdac04ee000 ---p 00000000 00:00 0 
+7fdac04ee000-7fdac05eb000 rw-p 00000000 00:00 0 
+7fdac05eb000-7fdac05ef000 ---p 00000000 00:00 0 
+7fdac05ef000-7fdac06ec000 rw-p 00000000 00:00 0 
+7fdac06ec000-7fdac0703000 r-xp 00000000 08:01 138621                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libnet.so
+7fdac0703000-7fdac0902000 ---p 00017000 08:01 138621                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libnet.so
+7fdac0902000-7fdac0903000 r--p 00016000 08:01 138621                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libnet.so
+7fdac0903000-7fdac0904000 rw-p 00017000 08:01 138621                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libnet.so
+7fdac0904000-7fdac0914000 r-xp 00000000 08:01 138622                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libnio.so
+7fdac0914000-7fdac0b13000 ---p 00010000 08:01 138622                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libnio.so
+7fdac0b13000-7fdac0b14000 r--p 0000f000 08:01 138622                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libnio.so
+7fdac0b14000-7fdac0b15000 rw-p 00010000 08:01 138622                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libnio.so
+7fdac0b15000-7fdac0b19000 ---p 00000000 00:00 0 
+7fdac0b19000-7fdac0c16000 rw-p 00000000 00:00 0 
+7fdac0c16000-7fdac0c1a000 ---p 00000000 00:00 0 
+7fdac0c1a000-7fdac0d17000 rw-p 00000000 00:00 0 
+7fdac0d17000-7fdac0d1b000 ---p 00000000 00:00 0 
+7fdac0d1b000-7fdac0e18000 rw-p 00000000 00:00 0 
+7fdac0e18000-7fdac0e1c000 ---p 00000000 00:00 0 
+7fdac0e1c000-7fdac0f19000 rw-p 00000000 00:00 0 
+7fdac0f19000-7fdac0f1d000 ---p 00000000 00:00 0 
+7fdac0f1d000-7fdac101a000 rw-p 00000000 00:00 0 
+7fdac101a000-7fdac12f8000 r--p 00000000 08:01 786545                     /usr/lib/locale/locale-archive
+7fdac12f8000-7fdac12fc000 ---p 00000000 00:00 0 
+7fdac12fc000-7fdac13f9000 rw-p 00000000 00:00 0 
+7fdac13f9000-7fdac13fd000 ---p 00000000 00:00 0 
+7fdac13fd000-7fdac14fa000 rw-p 00000000 00:00 0 
+7fdac14fa000-7fdac14fb000 ---p 00000000 00:00 0 
+7fdac14fb000-7fdac1dfc000 rw-p 00000000 00:00 0 
+7fdac1dfc000-7fdac1dfd000 ---p 00000000 00:00 0 
+7fdac1dfd000-7fdac1efe000 rw-p 00000000 00:00 0 
+7fdac1efe000-7fdac1eff000 ---p 00000000 00:00 0 
+7fdac1eff000-7fdac4000000 rw-p 00000000 00:00 0 
+7fdac4000000-7fdac4021000 rw-p 00000000 00:00 0 
+7fdac4021000-7fdac8000000 ---p 00000000 00:00 0 
+7fdac8000000-7fdac8021000 rw-p 00000000 00:00 0 
+7fdac8021000-7fdacc000000 ---p 00000000 00:00 0 
+7fdacc000000-7fdacc021000 rw-p 00000000 00:00 0 
+7fdacc021000-7fdad0000000 ---p 00000000 00:00 0 
+7fdad00df000-7fdad02e0000 rw-p 00000000 00:00 0 
+7fdad02e0000-7fdad0998000 ---p 00000000 00:00 0 
+7fdad0998000-7fdad0a98000 rw-p 00000000 00:00 0 
+7fdad0a98000-7fdad1150000 ---p 00000000 00:00 0 
+7fdad1150000-7fdad13c0000 rwxp 00000000 00:00 0 
+7fdad13c0000-7fdad16df000 ---p 00000000 00:00 0 
+7fdad16df000-7fdad19cf000 rwxp 00000000 00:00 0 
+7fdad19cf000-7fdad8c17000 ---p 00000000 00:00 0 
+7fdad8c17000-7fdad8e87000 rwxp 00000000 00:00 0 
+7fdad8e87000-7fdae0150000 ---p 00000000 00:00 0 
+7fdae0150000-7fdae4000000 r--s 00000000 08:01 138634                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/modules
+7fdae4000000-7fdae4b99000 rw-p 00000000 00:00 0 
+7fdae4b99000-7fdae8000000 ---p 00000000 00:00 0 
+7fdae807b000-7fdae81fd000 rw-p 00000000 00:00 0 
+7fdae81fd000-7fdae81fe000 ---p 00000000 00:00 0 
+7fdae81fe000-7fdae82ff000 rw-p 00000000 00:00 0 
+7fdae82ff000-7fdae8300000 ---p 00000000 00:00 0 
+7fdae8300000-7fdae8421000 rw-p 00000000 00:00 0 
+7fdae8421000-7fdae84f8000 ---p 00000000 00:00 0 
+7fdae84f8000-7fdae8518000 rw-p 00000000 00:00 0 
+7fdae8518000-7fdae85ef000 ---p 00000000 00:00 0 
+7fdae85ef000-7fdae860f000 rw-p 00000000 00:00 0 
+7fdae860f000-7fdae86e6000 ---p 00000000 00:00 0 
+7fdae86e6000-7fdae88e8000 rw-p 00000000 00:00 0 
+7fdae88e8000-7fdae88e9000 ---p 00000000 00:00 0 
+7fdae88e9000-7fdae89ef000 rw-p 00000000 00:00 0 
+7fdae89ef000-7fdae8ad5000 ---p 00000000 00:00 0 
+7fdae8ad5000-7fdae8adb000 rw-p 00000000 00:00 0 
+7fdae8adb000-7fdae8bc0000 ---p 00000000 00:00 0 
+7fdae8bc0000-7fdae8bc5000 r-xp 00000000 08:01 138613                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libjimage.so
+7fdae8bc5000-7fdae8dc5000 ---p 00005000 08:01 138613                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libjimage.so
+7fdae8dc5000-7fdae8dc6000 r--p 00005000 08:01 138613                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libjimage.so
+7fdae8dc6000-7fdae8dc7000 rw-p 00006000 08:01 138613                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libjimage.so
+7fdae8dc7000-7fdae8dce000 r-xp 00000000 08:01 138633                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libzip.so
+7fdae8dce000-7fdae8fcd000 ---p 00007000 08:01 138633                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libzip.so
+7fdae8fcd000-7fdae8fce000 r--p 00006000 08:01 138633                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libzip.so
+7fdae8fce000-7fdae8fcf000 rw-p 00007000 08:01 138633                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libzip.so
+7fdae8fcf000-7fdae8fda000 r-xp 00000000 08:01 1971423                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7fdae8fda000-7fdae91d9000 ---p 0000b000 08:01 1971423                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7fdae91d9000-7fdae91da000 r--p 0000a000 08:01 1971423                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7fdae91da000-7fdae91db000 rw-p 0000b000 08:01 1971423                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7fdae91db000-7fdae91e1000 rw-p 00000000 00:00 0 
+7fdae91e1000-7fdae91f8000 r-xp 00000000 08:01 1966175                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7fdae91f8000-7fdae93f7000 ---p 00017000 08:01 1966175                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7fdae93f7000-7fdae93f8000 r--p 00016000 08:01 1966175                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7fdae93f8000-7fdae93f9000 rw-p 00017000 08:01 1966175                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7fdae93f9000-7fdae93fb000 rw-p 00000000 00:00 0 
+7fdae93fb000-7fdae9406000 r-xp 00000000 08:01 1971472                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7fdae9406000-7fdae9605000 ---p 0000b000 08:01 1971472                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7fdae9605000-7fdae9606000 r--p 0000a000 08:01 1971472                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7fdae9606000-7fdae9607000 rw-p 0000b000 08:01 1971472                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7fdae9607000-7fdae960f000 r-xp 00000000 08:01 1966176                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7fdae960f000-7fdae980f000 ---p 00008000 08:01 1966176                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7fdae980f000-7fdae9810000 r--p 00008000 08:01 1966176                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7fdae9810000-7fdae9811000 rw-p 00009000 08:01 1966176                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7fdae9811000-7fdae981b000 r-xp 00000000 08:01 138598                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libinstrument.so
+7fdae981b000-7fdae9a1a000 ---p 0000a000 08:01 138598                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libinstrument.so
+7fdae9a1a000-7fdae9a1b000 r--p 00009000 08:01 138598                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libinstrument.so
+7fdae9a1b000-7fdae9a1c000 rw-p 0000a000 08:01 138598                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libinstrument.so
+7fdae9a1c000-7fdae9a45000 r-xp 00000000 08:01 138603                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libjava.so
+7fdae9a45000-7fdae9c44000 ---p 00029000 08:01 138603                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libjava.so
+7fdae9c44000-7fdae9c45000 r--p 00028000 08:01 138603                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libjava.so
+7fdae9c45000-7fdae9c47000 rw-p 00029000 08:01 138603                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libjava.so
+7fdae9c47000-7fdae9c54000 r-xp 00000000 08:01 138632                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libverify.so
+7fdae9c54000-7fdae9e53000 ---p 0000d000 08:01 138632                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libverify.so
+7fdae9e53000-7fdae9e55000 r--p 0000c000 08:01 138632                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libverify.so
+7fdae9e55000-7fdae9e56000 rw-p 0000e000 08:01 138632                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/libverify.so
+7fdae9e56000-7fdae9e5d000 r-xp 00000000 08:01 1971477                    /lib/x86_64-linux-gnu/librt-2.27.so
+7fdae9e5d000-7fdaea05c000 ---p 00007000 08:01 1971477                    /lib/x86_64-linux-gnu/librt-2.27.so
+7fdaea05c000-7fdaea05d000 r--p 00006000 08:01 1971477                    /lib/x86_64-linux-gnu/librt-2.27.so
+7fdaea05d000-7fdaea05e000 rw-p 00007000 08:01 1971477                    /lib/x86_64-linux-gnu/librt-2.27.so
+7fdaea05e000-7fdaea075000 r-xp 00000000 08:01 1966163                    /lib/x86_64-linux-gnu/libgcc_s.so.1
+7fdaea075000-7fdaea274000 ---p 00017000 08:01 1966163                    /lib/x86_64-linux-gnu/libgcc_s.so.1
+7fdaea274000-7fdaea275000 r--p 00016000 08:01 1966163                    /lib/x86_64-linux-gnu/libgcc_s.so.1
+7fdaea275000-7fdaea276000 rw-p 00017000 08:01 1966163                    /lib/x86_64-linux-gnu/libgcc_s.so.1
+7fdaea276000-7fdaea413000 r-xp 00000000 08:01 1966172                    /lib/x86_64-linux-gnu/libm-2.27.so
+7fdaea413000-7fdaea612000 ---p 0019d000 08:01 1966172                    /lib/x86_64-linux-gnu/libm-2.27.so
+7fdaea612000-7fdaea613000 r--p 0019c000 08:01 1966172                    /lib/x86_64-linux-gnu/libm-2.27.so
+7fdaea613000-7fdaea614000 rw-p 0019d000 08:01 1966172                    /lib/x86_64-linux-gnu/libm-2.27.so
+7fdaea614000-7fdaea78d000 r-xp 00000000 08:01 788641                     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25
+7fdaea78d000-7fdaea98d000 ---p 00179000 08:01 788641                     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25
+7fdaea98d000-7fdaea997000 r--p 00179000 08:01 788641                     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25
+7fdaea997000-7fdaea999000 rw-p 00183000 08:01 788641                     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25
+7fdaea999000-7fdaea99d000 rw-p 00000000 00:00 0 
+7fdaea99d000-7fdaeba46000 r-xp 00000000 08:01 138645                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/server/libjvm.so
+7fdaeba46000-7fdaebc46000 ---p 010a9000 08:01 138645                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/server/libjvm.so
+7fdaebc46000-7fdaebd14000 r--p 010a9000 08:01 138645                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/server/libjvm.so
+7fdaebd14000-7fdaebd4e000 rw-p 01177000 08:01 138645                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/server/libjvm.so
+7fdaebd4e000-7fdaebda7000 rw-p 00000000 00:00 0 
+7fdaebda7000-7fdaebf8e000 r-xp 00000000 08:01 1966168                    /lib/x86_64-linux-gnu/libc-2.27.so
+7fdaebf8e000-7fdaec18e000 ---p 001e7000 08:01 1966168                    /lib/x86_64-linux-gnu/libc-2.27.so
+7fdaec18e000-7fdaec192000 r--p 001e7000 08:01 1966168                    /lib/x86_64-linux-gnu/libc-2.27.so
+7fdaec192000-7fdaec194000 rw-p 001eb000 08:01 1966168                    /lib/x86_64-linux-gnu/libc-2.27.so
+7fdaec194000-7fdaec198000 rw-p 00000000 00:00 0 
+7fdaec198000-7fdaec19b000 r-xp 00000000 08:01 1966171                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7fdaec19b000-7fdaec39a000 ---p 00003000 08:01 1966171                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7fdaec39a000-7fdaec39b000 r--p 00002000 08:01 1966171                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7fdaec39b000-7fdaec39c000 rw-p 00003000 08:01 1966171                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7fdaec39c000-7fdaec3ab000 r-xp 00000000 08:01 138580                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/jli/libjli.so
+7fdaec3ab000-7fdaec5aa000 ---p 0000f000 08:01 138580                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/jli/libjli.so
+7fdaec5aa000-7fdaec5ab000 r--p 0000e000 08:01 138580                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/jli/libjli.so
+7fdaec5ab000-7fdaec5ac000 rw-p 0000f000 08:01 138580                     /home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/jbr/lib/jli/libjli.so
+7fdaec5ac000-7fdaec5c6000 r-xp 00000000 08:01 1971475                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7fdaec5c6000-7fdaec7c5000 ---p 0001a000 08:01 1971475                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7fdaec7c5000-7fdaec7c6000 r--p 00019000 08:01 1971475                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7fdaec7c6000-7fdaec7c7000 rw-p 0001a000 08:01 1971475                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7fdaec7c7000-7fdaec7cb000 rw-p 00000000 00:00 0 
+7fdaec7cb000-7fdaec7e7000 r-xp 00000000 08:01 1971913                    /lib/x86_64-linux-gnu/libz.so.1.2.11
+7fdaec7e7000-7fdaec9e6000 ---p 0001c000 08:01 1971913                    /lib/x86_64-linux-gnu/libz.so.1.2.11
+7fdaec9e6000-7fdaec9e7000 r--p 0001b000 08:01 1971913                    /lib/x86_64-linux-gnu/libz.so.1.2.11
+7fdaec9e7000-7fdaec9e8000 rw-p 0001c000 08:01 1971913                    /lib/x86_64-linux-gnu/libz.so.1.2.11
+7fdaec9e8000-7fdaeca0f000 r-xp 00000000 08:01 1966164                    /lib/x86_64-linux-gnu/ld-2.27.so
+7fdaeca7e000-7fdaecaef000 rw-p 00000000 00:00 0 
+7fdaecaef000-7fdaecaf6000 ---p 00000000 00:00 0 
+7fdaecaf6000-7fdaecafa000 ---p 00000000 00:00 0 
+7fdaecafa000-7fdaecbf9000 rw-p 00000000 00:00 0 
+7fdaecc03000-7fdaecc0b000 rw-s 00000000 08:01 1978967                    /tmp/hsperfdata_b2c/5409
+7fdaecc0b000-7fdaecc0c000 ---p 00000000 00:00 0 
+7fdaecc0c000-7fdaecc0d000 r--p 00000000 00:00 0 
+7fdaecc0d000-7fdaecc0f000 rw-p 00000000 00:00 0 
+7fdaecc0f000-7fdaecc10000 r--p 00027000 08:01 1966164                    /lib/x86_64-linux-gnu/ld-2.27.so
+7fdaecc10000-7fdaecc11000 rw-p 00028000 08:01 1966164                    /lib/x86_64-linux-gnu/ld-2.27.so
+7fdaecc11000-7fdaecc12000 rw-p 00000000 00:00 0 
+7fff37a77000-7fff37a99000 rw-p 00000000 00:00 0                          [stack]
+7fff37b82000-7fff37b85000 r--p 00000000 00:00 0                          [vvar]
+7fff37b85000-7fff37b87000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+
+VM Arguments:
+jvm_args: -javaagent:/home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/lib/idea_rt.jar=33109:/home/b2c/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/192.7142.36/bin -Dfile.encoding=UTF-8 
+java_command: com.pluralsight.flink.module2.FilterMovies
+java_class_path (initial): /home/b2c/Projects/flinkpluralsightcourse/target/classes:/home/b2c/.m2/repository/org/apache/flink/flink-java/1.11.1/flink-java-1.11.1.jar:/home/b2c/.m2/repository/org/apache/flink/flink-core/1.11.1/flink-core-1.11.1.jar:/home/b2c/.m2/repository/org/apache/flink/flink-annotations/1.11.1/flink-annotations-1.11.1.jar:/home/b2c/.m2/repository/org/apache/flink/flink-metrics-core/1.11.1/flink-metrics-core-1.11.1.jar:/home/b2c/.m2/repository/org/apache/flink/flink-shaded-asm-7/7.1-11.0/flink-shaded-asm-7-7.1-11.0.jar:/home/b2c/.m2/repository/com/esotericsoftware/kryo/kryo/2.24.0/kryo-2.24.0.jar:/home/b2c/.m2/repository/com/esotericsoftware/minlog/minlog/1.2/minlog-1.2.jar:/home/b2c/.m2/repository/org/objenesis/objenesis/2.1/objenesis-2.1.jar:/home/b2c/.m2/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar:/home/b2c/.m2/repository/org/apache/commons/commons-compress/1.20/commons-compress-1.20.jar:/home/b2c/.m2/repository/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.jar:/home/b2c/.m2/repository/org/apache/commons/commons-math3/3.5/commons-math3-3.5.jar:/home/b2c/.m2/repository/org/slf4j/slf4j-api/1.7.15/slf4j-api-1.7.15.jar:/home/b2c/.m2/repository/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar:/home/b2c/.m2/repository/org/apache/flink/force-shading/1.11.1/force-shading-1.11.1.jar:/home/b2c/.m2/repository/org/apache/flink/flink-streaming-java_2.11/1.11.1/flink-streaming-java_2.11-1.11.1.jar:/home/b2c/.m2/repository/org/apache/flink/flink-runtime_2.11/1.11.1/flink-runtime_2.11-1.11.1.jar:/home/b2c/.m2/repository/org/apache/flink/flink-queryable-state-client-java/1.11.1/flink-queryable-state-client-java-1.11.1.jar:/home/b2c/.m2/repository/org/apache/flink/flink-hadoop-fs/1.11.1/flink-hadoop-fs-1.11.1.jar:/home/b2c/.m2/repository/commons-io/commons-io/2.4/commons-io-2.4.jar:/home/b2c/.m2/repository/org/apache/flink/flink-shaded-netty/4.1.39.Final-11.0/flink-shaded-netty-4.1.39.Final-11.0.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 2                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 1                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 2                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 33554432                                  {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 517996544                                 {product} {ergonomic}
+   size_t MaxNewSize                               = 310378496                                 {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5824844                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122916698                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122916698                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+USERNAME=b2c
+SHELL=/bin/bash
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xd98670], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xd98670], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0xd98670], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0xb99c10], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0xb99c10], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0xd98670], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR2: [libjvm.so+0xb99ab0], sa_mask[0]=00100000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: [libjvm.so+0xb99c60], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGINT: [libjvm.so+0xb99c60], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGTERM: [libjvm.so+0xb99c60], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGQUIT: [libjvm.so+0xb99c60], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=18.04
+DISTRIB_CODENAME=bionic
+DISTRIB_DESCRIPTION="Ubuntu 18.04.4 LTS"
+uname:Linux 4.15.0-112-generic #113-Ubuntu SMP Thu Jul 9 23:41:39 UTC 2020 x86_64
+libc:glibc 2.27 NPTL 2.27 
+rlimit: STACK 8192k, CORE 0k, NPROC 7705, NOFILE 1048576, AS infinity, DATA infinity, FSIZE infinity
+load average:16.74 6.16 2.94
+
+/proc/meminfo:
+MemTotal:        2017496 kB
+MemFree:           52736 kB
+MemAvailable:       6056 kB
+Buffers:             160 kB
+Cached:           117236 kB
+SwapCached:          524 kB
+Active:          1059408 kB
+Inactive:         358168 kB
+Active(anon):    1053300 kB
+Inactive(anon):   351172 kB
+Active(file):       6108 kB
+Inactive(file):     6996 kB
+Unevictable:          32 kB
+Mlocked:              32 kB
+SwapTotal:       1942896 kB
+SwapFree:             12 kB
+Dirty:                 0 kB
+Writeback:           392 kB
+AnonPages:       1300056 kB
+Mapped:             9620 kB
+Shmem:            104088 kB
+Slab:             125688 kB
+SReclaimable:      43928 kB
+SUnreclaim:        81760 kB
+KernelStack:       18368 kB
+PageTables:        61256 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     2951644 kB
+Committed_AS:    8110252 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:      239488 kB
+DirectMap2M:     1857536 kB
+DirectMap1G:           0 kB
+
+
+/proc/sys/kernel/threads-max (system-wide limit on the number of threads):
+15410
+
+
+/proc/sys/vm/max_map_count (maximum number of memory map areas a process may have):
+65530
+
+
+/proc/sys/kernel/pid_max (system-wide limit on number of process identifiers):
+131072
+
+
+
+container (cgroup) information:
+container_type: cgroupv1
+cpu_cpuset_cpus: 0-1
+cpu_memory_nodes: 0
+active_processor_count: 2
+cpu_quota: -1
+cpu_period: 100000
+cpu_shares: -1
+memory_limit_in_bytes: -1
+memory_and_swap_limit_in_bytes: -2
+memory_soft_limit_in_bytes: -1
+memory_usage_in_bytes: 1452056576
+memory_max_usage_in_bytes: 56479744
+
+Steal ticks since vm start: 0
+Steal ticks percentage since vm start:  0.000
+
+CPU:total 2 (initial active 2) (1 cores per cpu, 1 threads per core) family 6 model 142 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, tsc, tscinvbit, bmi1, bmi2, adx, fma
+CPU Model and flags from /proc/cpuinfo:
+model name	: Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon nopl xtopology tsc_reliable nonstop_tsc cpuid pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb stibp fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid rdseed adx smap clflushopt xsaveopt xsavec xsaves arat flush_l1d arch_capabilities
+
+Memory: 4k page, physical 2017496k(54440k free), swap 1942896k(0k free)
+
+vm_info: OpenJDK 64-Bit Server VM (11.0.4+10-b304.77) for linux-amd64 JRE (11.0.4+10-b304.77), built on Oct 10 2019 12:18:38 by "" with gcc 4.8.5 20150623 (Red Hat 4.8.5-36)
+
+END.
